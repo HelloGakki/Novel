@@ -1,0 +1,37 @@
+﻿<Window x:Class="NovelDownload.Client"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NovelDownload"
+        xmlns:vm="clr-namespace:NovelDownload.ViewModel"
+        mc:Ignorable="d"
+        Title="NovelDownload" Height="480" Width="720" ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:ClientViewModel/>
+    </Window.DataContext>
+    <DockPanel >
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <TextBox x:Name="pathTextBox" Width="100" Margin="10 0 30 0" Text="{Binding SearchNovelName}"/>
+            <Button x:Name="searchButton" Content="Search" Padding="10 0 10 0" Click="searchButton_Click" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+            <Label Content="Message："/>
+            <Label Content="{Binding Message}"/>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button x:Name="saveButton" Content="Download" Padding="10 0 10 0" Click="saveButton_Click" Margin="0 0 10 0" IsEnabled="{Binding IsCanDownload}"/>
+            <Button x:Name="cancelButton" Content="Cancel" Padding="10 0 10 0" Click="cancelButton_Click" Margin="0 0 10 0"/>
+        </StackPanel>
+        <ListView  ItemsSource="{Binding NovelList}" Foreground="Black" SelectedIndex="{Binding SelectNovelIndex}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="书名" Width="200" DisplayMemberBinding="{Binding Path=NovelName}" />
+                    <GridViewColumn Header="作者" Width="120" DisplayMemberBinding="{Binding Path=NovelAuthor}"/>
+                    <GridViewColumn Header="最新章节" Width="400" DisplayMemberBinding="{Binding Path=LastNovelChapter}"/>
+                    <!--<GridViewColumn Header="网址"  DisplayMemberBinding="{Binding }"/>-->
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</Window>
