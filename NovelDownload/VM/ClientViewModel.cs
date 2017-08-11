@@ -163,7 +163,7 @@ namespace NovelDownload.ViewModel
             }
             catch (Exception e)
             {
-
+                Message = e.Message;
             }
         }
 
@@ -171,7 +171,7 @@ namespace NovelDownload.ViewModel
         {
             if (isDownloading)
             {
-                MessageBox.Show("正在下载" + "<<" + NovelList[SelectNovelIndex].NovelName + ">>\r\n" + "请稍后...", "Message");
+                MessageBox.Show("小说正在小在中, " + "请稍后...", "Message");
                 return;
             }
             Thread saveNovelThread = new Thread(new ThreadStart(SaveNovel));
